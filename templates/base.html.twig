@@ -11,7 +11,11 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
+    <header>
+        {% include 'parts/navbar/navbar.html.twig' %}
+        {% include 'parts/_partials/alerts.html.twig' %}
+    </header>
+    <body data-turbo="false">
         {% block body %}{% endblock %}
     </body>
 </html>
