@@ -35,39 +35,17 @@ class ReferencesController extends AbstractController
         ]);
     }
 
-//    #[Route('/new', name: 'app_references_new', methods: ['GET', 'POST'])]
-//    public function new(Request $request, EntityManagerInterface $entityManager): Response
-//    {
-//        $reference = new References();
-//
-//        $form = $this->createForm(ReferencesType::class, $reference);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $entityManager->persist($reference);
-//            $entityManager->flush();
-//
-//            return $this->redirectToRoute('app_references_index', [], Response::HTTP_SEE_OTHER);
-//        }
-//
-//        return $this->render('references/new.html.twig', [
-//            'reference' => $reference,
-//            'form' => $form,
-//        ]);
-//    }
-
-
-# test service pour créer une reference
     #[Route('/new', name: 'app_references_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $reference = $this->referencesService->createReference('Nom de la référence');
+        $reference = new References();
 
         $form = $this->createForm(ReferencesType::class, $reference);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->referencesService->saveReference($reference);
+            $entityManager->persist($reference);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_references_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -77,6 +55,28 @@ class ReferencesController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+# test service pour créer une reference
+//    #[Route('/new', name: 'app_references_new', methods: ['GET', 'POST'])]
+//    public function new(Request $request): Response
+//    {
+//        $reference = $this->referencesService->createReference('Nom de la référence');
+//
+//        $form = $this->createForm(ReferencesType::class, $reference);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $this->referencesService->saveReference($reference);
+//
+//            return $this->redirectToRoute('app_references_index', [], Response::HTTP_SEE_OTHER);
+//        }
+//
+//        return $this->render('references/new.html.twig', [
+//            'reference' => $reference,
+//            'form' => $form,
+//        ]);
+//    }
 
 
     #[Route('/detail/{id}', name: 'app_references_show', methods: ['GET'])]
