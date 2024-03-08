@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\Repository\ProduitsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: ProduitsRepository::class)]
-class Produits
+class Produits implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,6 +30,8 @@ class Produits
     private ?Categories $categorie = null;
 
     #[ORM\ManyToMany(targetEntity: Distributeurs::class, inversedBy: 'produits')]
+//    private iterable $distributeur;
+//    private ArrayCollection $distributeur;
     private Collection $distributeur;
 
     public function __construct()
@@ -110,6 +114,17 @@ class Produits
         $this->distributeur->removeElement($distributeur);
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'nom' => $this->nom,
+            'prix' => $this->prix,
+            'categorie'=> $this->categorie->getNom(),
+            'reference' => $this->reference->getNom(),
+            'distributeur' => $this->distributeur->getKeys('produits')
+        ];
     }
 
 

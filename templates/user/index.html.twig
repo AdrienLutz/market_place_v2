@@ -7,14 +7,14 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Username</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Password</th>
+{#            <th>Username</th>#}
+{#            <th>Actions</th>#}
+        </tr>
         </thead>
         <tbody>
         {% for user in users %}
@@ -23,29 +23,23 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.username }}</td>
-
                 <td>
 {#                    {% if app.user is not null %}#}
-{#                        <a class=" btn btn-success" href="{{ path('app_user_show', {'id': user.id}) }}">Détail</a>#}
+{#                        <a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Détail</a>#}
+{#                        {% if app.user.hasRole("ROLE_ADMIN") %}#}
+{#                            <a class="btn btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>#}
+{#                        {% endif %}#}
 {#                    {% endif %}#}
-{#                    {% if app.user is not null and app.user.hasRole("ROLE")%}#}
-{#                        <a class=" btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>#}
-{#                    {% endif %}#}
-                    {% if app.user is not null %}
-                        <a class="btn btn-success" href="{{ path('app_user_show', {'id': user.id}) }}">Détail</a>
-                        {% if app.user.hasRole("ROLE_ADMIN") %}
-                            <a class="btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                        {% endif %}
-                    {% endif %}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="5">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+{#    <a class="btn btn-success" href="{{ path('app_user_new') }}">Create new</a>#}
+    <a class="btn btn-info" href="{{ path('app_default') }}">Back</a>
 {% endblock %}

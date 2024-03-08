@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/distributeurs')]
 class DistributeursController extends AbstractController
 {
-    #[Route('/', name: 'app_distributeurs_index', methods: ['GET'])]
+    #[Route('/index', name: 'app_distributeurs_index', methods: ['GET'])]
     public function index(DistributeursRepository $distributeursRepository): Response
     {
         return $this->render('distributeurs/index.html.twig', [
@@ -42,7 +42,7 @@ class DistributeursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_distributeurs_show', methods: ['GET'])]
+    #[Route('/show/{id}/', name: 'app_distributeurs_show', methods: ['GET'])]
     public function show(Distributeurs $distributeur): Response
     {
         return $this->render('distributeurs/show.html.twig', [
@@ -50,7 +50,7 @@ class DistributeursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_distributeurs_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}/', name: 'app_distributeurs_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Distributeurs $distributeur, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(DistributeursType::class, $distributeur);
@@ -68,7 +68,7 @@ class DistributeursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_distributeurs_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'app_distributeurs_delete', methods: ['POST'])]
     public function delete(Request $request, Distributeurs $distributeur, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$distributeur->getId(), $request->request->get('_token'))) {

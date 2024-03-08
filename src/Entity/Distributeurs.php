@@ -19,6 +19,8 @@ class Distributeurs
     private ?string $nom = null;
 
     #[ORM\ManyToMany(targetEntity: Produits::class, mappedBy: 'distributeur')]
+//    private iterable $produits;
+//    private ArrayCollection $produits;
     private Collection $produits;
 
     public function __construct()

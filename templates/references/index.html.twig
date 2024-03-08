@@ -7,11 +7,11 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for reference in references %}
@@ -19,17 +19,18 @@
                 <td>{{ reference.id }}</td>
                 <td>{{ reference.nom }}</td>
                 <td>
-                    <a href="{{ path('app_references_show', {'id': reference.id}) }}">show</a>
-                    <a href="{{ path('app_references_edit', {'id': reference.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_references_show', {'id': reference.id}) }}">Show</a>
+                    <a class="btn btn-warning" href="{{ path('app_references_edit', {'id': reference.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_references_new') }}">Create new</a>
+    <a class="btn btn-success" href="{{ path('app_references_new') }}">Create new</a>
+    <a class="btn btn-info" href="{{ path('app_default') }}">Back</a>
 {% endblock %}

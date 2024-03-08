@@ -24,10 +24,10 @@ class ProduitsType extends AbstractType
             ->add('reference', ReferencesType::class, [
                 'label'=>'votre référence'
             ])
-//            ->add('categorie', EntityType::class, [
-//                'class' => Categories::class,
-//                'choice_label' => 'nom',
-//            ])
+            ->add('categorie', EntityType::class, [
+                'class' => Categories::class,
+                'choice_label' => 'nom',
+            ])
             ->add('distributeur', EntityType::class, [
                 'class' => Distributeurs::class,
                 'choice_label' => 'nom',

@@ -3,28 +3,54 @@
 {% block title %}Produits{% endblock %}
 
 {% block body %}
-    <h1>Produits</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ produit.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ produit.prix }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_produits_index') }}">back to list</a>
-
-    <a href="{{ path('app_produits_edit', {'id': produit.id}) }}">edit</a>
-
-    {{ include('produits/_delete_form.html.twig') }}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Détails du Produit</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <h6 class="text-muted">ID</h6>
+                                <p>{{ produit.id }}</p>
+                            </div>
+                            <div class="col-md-8">
+                                <h6 class="text-muted">Nom</h6>
+                                <p>{{ produit.nom }}</p>
+                                <h6 class="text-muted">Prix</h6>
+                                <p>{{ produit.prix }}</p>
+                                <h6 class="text-muted">Référence ID</h6>
+                                <p>{{ produit.reference.id }}</p>
+                                <h6 class="text-muted">Catégorie ID</h6>
+                                <p>{{ produit.categorie.id }}</p>
+                                <h6 class="text-muted">Distributeurs IDs</h6>
+                                <ul>
+                                    {% for distributeur in produit.distributeur %}
+                                        <li>{{ distributeur.id }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <h6 class="text-muted">Référence</h6>
+                                <p>{{ produit.reference.nom }}</p>
+                                <h6 class="text-muted">Catégorie</h6>
+                                <p>{{ produit.categorie.nom }}</p>
+                                <h6 class="text-muted">Distributeurs</h6>
+                                <ul>
+                                    {% for distributeur in produit.distributeur %}
+                                        <li>{{ distributeur.nom }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('app_produits_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                        <a href="{{ path('app_produits_edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier</a>
+                        {{ include('produits/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

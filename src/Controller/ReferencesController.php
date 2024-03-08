@@ -90,7 +90,7 @@ class ReferencesController extends AbstractController
     #[Route('/message-service', name: 'app_references_message-service')]
     public function messageServiceReference(MessageService $messageService): Response
     {
-//        $test = $messageService->AfficherMessage();
+        $test = $messageService->AfficherMessage();
 
         return new Response($messageService->AfficherMessage());
 

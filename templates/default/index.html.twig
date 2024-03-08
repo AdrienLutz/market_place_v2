@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}Market place CDA v2{% endblock %}
 
 {% block body %}
     <style>
@@ -11,23 +11,14 @@
     <div class="example-wrapper">
         <h1>Bienvenue sur le market place ✅</h1>
         <div>
-{#                    {% if app.user %}#}
-{#                        <a href="{{  path ('app_logout') }}"> Me déconnecter </a>#}
-{#                        {% if app.user.hasRole('ROLE_ADMIN') %}#}
-{#                            <p>tu es l'admin</p>#}
-{#                        {% endif %}#}
-{#                    {% endif %}#}
-{#                    {% if app.user is null %}#}
-{#                        <a href="{{  path ('app_login') }}"> Me connecter </a>#}
-{#                    {% endif %}#}
 
             {% if app.user is not null %}
                 {% if app.user.hasRole('ROLE_ADMIN') %}
-                    <p>tu es l'admin</p>
+                    <p>Bonjour vous êtes l'admin</p>
                 {% endif %}
-                <a href="{{ path('app_logout') }}">Me déconnecter</a>
+                <a class="btn btn-danger" href="{{ path('app_logout') }}">Me déconnecter</a>
             {% else %}
-                <a href="{{ path('app_login') }}">Me connecter</a>
+                <a class="btn btn-success" href="{{ path('app_login') }}">Me connecter</a>
             {% endif %}
 
         </div>

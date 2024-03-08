@@ -7,11 +7,11 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for distributeur in distributeurs %}
@@ -19,17 +19,18 @@
                 <td>{{ distributeur.id }}</td>
                 <td>{{ distributeur.nom }}</td>
                 <td>
-                    <a href="{{ path('app_distributeurs_show', {'id': distributeur.id}) }}">show</a>
-                    <a href="{{ path('app_distributeurs_edit', {'id': distributeur.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_distributeurs_show', {'id': distributeur.id}) }}">Show</a>
+                    <a class="btn btn-warning" href="{{ path('app_distributeurs_edit', {'id': distributeur.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_distributeurs_new') }}">Create new</a>
+    <a class="btn btn-success" href="{{ path('app_distributeurs_new') }}">Create new</a>
+    <a class="btn btn-info" href="{{ path('app_default') }}">Back</a>
 {% endblock %}
